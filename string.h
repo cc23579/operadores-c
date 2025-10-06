@@ -40,6 +40,13 @@ public:
     const char& operator[](size_t index) const {
         return data[index];
     }
+    
+    void append(char c) {
+    if (size < MAX_LENGTH) {     // verifica se não ultrapassa o tamanho máximo
+        data[size++] = c;        // adiciona o caractere na posição atual
+        data[size] = '\0';       // mantém o '\0' no final
+    }
+}
 };
 
 #endif

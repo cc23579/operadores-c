@@ -1,33 +1,39 @@
-#ifndef LISTA
-#define LISTA
+#ifndef LISTA_H
+#define LISTA_H
 
+#include <iostream>
+#include <sstream>
+
+template <typename T>
 class Lista {
 protected:
-    typedef struct sNo {
-        int Info;
-        struct sNo* Prox;
-    } sNo;
+    struct sNo {
+        T Info;
+        sNo* Prox;
+    };
+    using pNo = sNo*;
 
-    typedef sNo* pNo;
-    protected:
-        static char Erro;
-        char Valida;
-        pNo Inicio;
+    static char Erro;
+    char Valida;
+    pNo Inicio;
 
-    void DescarteTudo();
+    void DescarteTudoInterno();
 
 public:
     static char DeuErro();
     char eValida() const;
 
     Lista();
-    ~Lista();
+    virtual ~Lista();
 
     bool Vazia() const;
-    void Insira(int I);
-    int Contem(int I) const;
-    void Descarte(int I);
-    char* NaFormaDeString() const;
+    virtual void Insira(const T& I);
+    int Contem(const T& I) const;
+    void Descarte(const T& I);
+    void DescarteTudo();
+    std::string NaFormaDeString() const;
 };
+
+#include "Lista.cpp"  
 
 #endif
